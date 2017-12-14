@@ -6,6 +6,10 @@
 
 [Pug template](https://github.com/pugjs/pug) support for [Parcel bundler](https://github.com/parcel-bundler/parcel)
 
+[![Build Status](https://travis-ci.org/Ty3uK/parcel-plugin-pug.svg?branch=master)](https://travis-ci.org/Ty3uK/parcel-plugin-pug)
+[![Dependencies](https://david-dm.org/Ty3uK/parcel-plugin-pug.svg?branch=master)](https://travis-ci.org/Ty3uK/parcel-plugin-pug)
+[![npm package](https://img.shields.io/npm/v/parcel-plugin-pug.svg)](https://www.npmjs.com/package/parcel-plugin-pug)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 ## Features
 
