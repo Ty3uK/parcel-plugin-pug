@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "build",
+        "target": "es6",
+        "module": "commonjs",
+        "types": ["node", "typescript"],
+        "sourceMap": true,
+        "declaration": true,
+        "strict": true,
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "importHelpers": true,
+        "allowSyntheticDefaultImports": false
+    }
+}

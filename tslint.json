@@ -1,0 +1,23 @@
+{
+    "extends": ["tslint:recommended", "tslint-eslint-rules"],
+    "rules": {
+        "no-duplicate-variable": true,
+        "no-string-literal": false,
+        "no-console": [false],
+        "no-unused-variable": [true],
+        "whitespace": [
+            true,
+            "check-operator", "check-separator", "check-type", "check-typecast"
+        ],
+        "trailing-comma": [false],
+        "object-literal-sort-keys": false,
+        "interface-name": [true, "never-prefix"],
+        "one-line": [true, "check-open-brace", "check-whitespace"],
+        "quotemark": [true, "single", "avoid-escape"],
+        "indent": [true, "spaces", 4],
+        "no-namespace": false,
+        "arrow-parens": [true, "ban-single-arg-parens"],
+        "only-arrow-functions": false,
+        "ordered-imports": false
+    }
+}
