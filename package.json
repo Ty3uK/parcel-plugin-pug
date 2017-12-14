@@ -15,7 +15,6 @@
     "build": "tsc",
     "lint": "tslint --project .",
     "precommit": "run-p build lint",
-    "prepublish": "run-p build lint",
     "release": "standard-version"
   },
   "peerDependencies": {
