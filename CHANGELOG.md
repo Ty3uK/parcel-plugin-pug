@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/Ty3uK/parcel-plugin-pug/compare/v0.1.2...v0.2.0) (2017-12-19)
+
+
+### Bug Fixes
+
+* **git:** Husky precommit hook, redundant `parcel-bundler` in devDependencies ([bfe1342](https://github.com/Ty3uK/parcel-plugin-pug/commit/bfe1342))
+
+
+### Features
+
+* added support for updating included and extended templates on change ([c220e8d](https://github.com/Ty3uK/parcel-plugin-pug/commit/c220e8d))
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/Ty3uK/parcel-plugin-pug/compare/v0.1.1...v0.1.2) (2017-12-14)
 
