@@ -30,3 +30,16 @@
 or
 
 `npm install parcel-plugin-pug`
+
+## Getting error?
+
+If you getting error like that
+
+```bash
+parcel src/content.pug
+⏳  Building...
+Server running at http://localhost:1234
+🚨  Cannot find module 'parcel-bundler/src/Asset'
+```
+
+you need to install `parcel-bundler` by running `npm install -D parcel-bundler` or `yarn add parcel-bundler` in your project folder, because plugin uses `parcel-bundler` as peerDependency.
