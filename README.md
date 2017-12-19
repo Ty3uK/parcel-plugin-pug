@@ -21,8 +21,8 @@
 
 ## Coming features
 
-- Support HMR when changing template includes
-- Fix duplicated pug error messages
+- [x] Support HMR when changing template includes
+- [ ] Fix duplicated pug error messages
 
 ## Installation
 `yarn add parcel-plugin-pug`

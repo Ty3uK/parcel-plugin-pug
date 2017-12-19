@@ -34,7 +34,6 @@ const ATTRS: Dictionary<string[]> = {
 };
 
 export = class PugAsset extends Asset {
-
   public type = 'html';
 
   constructor(name: string, pkg: string, options: any) {
@@ -53,6 +52,13 @@ export = class PugAsset extends Asset {
 
   public collectDependencies(): void {
     walk(this.ast, node => {
+      if (node.filename !== this.name && !this.dependencies.has(node.filename)) {
+        this.addDependency(node.filename, {
+          name: node.filename,
+          includedInParent: true
+        });
+      }
+
       if (node.attrs) {
         for (const attr of node.attrs) {
           const elements = ATTRS[attr.name];
@@ -75,8 +81,7 @@ export = class PugAsset extends Asset {
   public generate() {
     const result = generateCode(this.ast, {
       compileDebug: false,
-      pretty: !this.options.minify,
-      inlineRuntimeFunctions: false
+      pretty: !this.options.minify
     });
 
     return { html: wrap(result)() };
