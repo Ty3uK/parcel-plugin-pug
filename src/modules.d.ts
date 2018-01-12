@@ -1,6 +1,7 @@
 declare module 'parcel-bundler/src/Asset' {
-  class HTMLAsset {
+  class Asset {
     constructor(name: string, pkg: string, options: any);
+
     parse(code: string): any;
     addDependency(path: string, options: Object): any;
     addURLDependency(url: string): string;
@@ -13,12 +14,7 @@ declare module 'parcel-bundler/src/Asset' {
     dependencies: Set<Object>;
   }
 
-  export = HTMLAsset;
-}
-
-declare module 'posthtml-render' {
-  function postHTMLRender(tree: any, options?: any): string;
-  export = postHTMLRender;
+  export = Asset;
 }
 
 declare module 'parcel-bundler/src/utils/is-url' {
@@ -31,7 +27,7 @@ declare module 'pug-load' {
     static string(str: string, options?: any): any;
   }
 
-  export = load; 
+  export = load;
 }
 
 declare module 'pug-lexer' {
@@ -62,5 +58,10 @@ declare module 'pug-code-gen' {
 declare module 'pug-runtime/wrap' {
   function wrap(template: string, templateName?: string): Function;
   export = wrap;
+}
+
+declare module 'pug-filters' {
+  function runFilter(name: string, str: string, options: any, currentDirectory: string, funcName: string): any;
+  function handleFilters(ast: any, filters?: any): any;
 }
 

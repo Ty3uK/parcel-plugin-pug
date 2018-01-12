@@ -11,6 +11,7 @@ import walk = require('pug-walk');
 import linker = require('pug-linker');
 import generateCode = require('pug-code-gen');
 import wrap = require('pug-runtime/wrap');
+import filters = require('pug-filters');
 
 interface Dictionary<T> {
   [key: string]: T;
@@ -46,7 +47,10 @@ export = class PugAsset extends Asset {
       parse: parser,
       filename: this.name
     });
+
     ast = linker(ast);
+    ast = filters.handleFilters(ast);
+
     return ast;
   }
 
