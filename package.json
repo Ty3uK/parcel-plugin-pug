@@ -12,7 +12,7 @@
     "build"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp -R src/Asset build/",
     "lint": "tslint --project .",
     "validate": "npm-run-all build lint",
     "precommit": "yarn run validate",
