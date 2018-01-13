@@ -1,8 +1,8 @@
 import url = require('url');
 import path = require('path');
 
-import Asset = require('parcel-bundler/src/Asset');
-import isURL = require('parcel-bundler/src/utils/is-url');
+import { Asset } from './Asset';
+import isURL = require('parcel-bundler/lib/utils/is-url');
 
 import load = require('pug-load');
 import lexer = require('pug-lexer');

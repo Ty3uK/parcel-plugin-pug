@@ -19,7 +19,7 @@
     "release": "standard-version"
   },
   "peerDependencies": {
-    "parcel-bundler": "^1.2.0"
+    "parcel-bundler": "^1.1.0"
   },
   "devDependencies": {
     "@types/node": "^8.0.58",

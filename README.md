@@ -17,12 +17,14 @@
 
 - Supports `.pug` and `.jade` template files
 - Correctly handles include and extends statements
+- Supports Pug filters
 - Resolves all assets inside template files
 
 ## Coming features
 
 - [x] Support HMR when changing template includes
 - [ ] Fix duplicated pug error messages
+- [ ] Fix variables with URL in mixins
 
 ## Installation
 `yarn add parcel-plugin-pug`

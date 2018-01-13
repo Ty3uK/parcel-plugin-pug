@@ -1,4 +1,4 @@
-declare module 'parcel-bundler/src/Asset' {
+declare module 'parcel-bundler/lib/Asset' {
   class Asset {
     constructor(name: string, pkg: string, options: any);
 
@@ -17,7 +17,7 @@ declare module 'parcel-bundler/src/Asset' {
   export = Asset;
 }
 
-declare module 'parcel-bundler/src/utils/is-url' {
+declare module 'parcel-bundler/lib/utils/is-url' {
   function isURL(url: string): boolean;
   export = isURL;
 }
