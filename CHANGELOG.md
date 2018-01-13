@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.3"></a>
+## [0.2.3](https://github.com/Ty3uK/parcel-plugin-pug/compare/v0.2.2...v0.2.3) (2018-01-13)
+
+
+### Bug Fixes
+
+* Errors with `async` in node < 8 ([20e16e6](https://github.com/Ty3uK/parcel-plugin-pug/commit/20e16e6))
+
+
+
 <a name="0.2.2"></a>
 ## [0.2.2](https://github.com/Ty3uK/parcel-plugin-pug/compare/v0.2.1...v0.2.2) (2018-01-12)
 
