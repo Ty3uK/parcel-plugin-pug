@@ -90,4 +90,8 @@ export = class PugAsset extends Asset {
 
     return { html: wrap(result)() };
   }
+
+  public shouldInvalidate(): boolean {
+    return false;
+  }
 };
