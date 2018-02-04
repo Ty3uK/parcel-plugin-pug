@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.5"></a>
+## [0.2.5](https://github.com/Ty3uK/parcel-plugin-pug/compare/v0.2.4...v0.2.5) (2018-02-04)
+
+
+### Bug Fixes
+
+* `asset.shouldInvalidate is not a function` error ([0c9b1ff](https://github.com/Ty3uK/parcel-plugin-pug/commit/0c9b1ff))
+
+
+
 <a name="0.2.4"></a>
 ## [0.2.4](https://github.com/Ty3uK/parcel-plugin-pug/compare/v0.2.3...v0.2.4) (2018-01-13)
 

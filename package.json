@@ -1,6 +1,6 @@
 {
   "name": "parcel-plugin-pug",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Pug template support for Parcel bundler",
   "repository": "https://github.com/Ty3uK/parcel-plugin-pug.git",
   "main": "build/index.js",
@@ -24,7 +24,9 @@
   "devDependencies": {
     "@types/node": "^8.0.58",
     "husky": "^0.14.3",
+    "jest": "^22.0.6",
     "npm-run-all": "^4.1.2",
+    "parcel-bundler": "^1.4.1",
     "standard-version": "^4.2.0",
     "tslint": "^5.8.0",
     "tslint-eslint-rules": "^4.1.1",
