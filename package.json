@@ -38,7 +38,7 @@
     "pug-lexer": "^4.0.0",
     "pug-linker": "^3.0.4",
     "pug-load": "^2.0.10",
-    "pug-parser": "^4.0.1",
+    "pug-parser": "^5.0.0",
     "pug-runtime": "^2.0.4",
     "pug-walk": "^1.1.6"
   },
