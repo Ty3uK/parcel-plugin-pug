@@ -56,12 +56,20 @@ export = class PugAsset extends Asset {
 
   public collectDependencies(): void {
     walk(this.ast, node => {
-      if (node.filename !== this.name && !this.dependencies.has(node.filename)) {
-        this.addDependency(node.filename, {
-          name: node.filename,
-          includedInParent: true
-        });
-      }
+      const recursiveCollect = node => {
+        if (node.nodes) {
+          node.nodes.forEach(n => recursiveCollect(n))
+        } else {
+          if (node.filename && node.filename !== this.name && !this.dependencies.has(node.filename)) {
+          this.addDependency(node.filename, {
+            name: node.filename,
+            includedInParent: true
+          });
+        }
+        }
+      };
+
+      recursiveCollect(node);
 
       if (node.attrs) {
         for (const attr of node.attrs) {
