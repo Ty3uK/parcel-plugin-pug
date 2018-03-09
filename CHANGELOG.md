@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.7"></a>
+## [0.2.7](https://github.com/Ty3uK/parcel-plugin-pug/compare/v0.2.6...v0.2.7) (2018-03-09)
+
+
+### Bug Fixes
+
+* update `pug-parser`, fix dependencies badge in README ([0c06eac](https://github.com/Ty3uK/parcel-plugin-pug/commit/0c06eac))
+
+
+
 <a name="0.2.6"></a>
 ## [0.2.6](https://github.com/Ty3uK/parcel-plugin-pug/compare/v0.2.5...v0.2.6) (2018-03-09)
 
