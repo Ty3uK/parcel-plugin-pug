@@ -17,6 +17,17 @@ interface Dictionary<T> {
   [key: string]: T;
 }
 
+interface Node {
+  type: string;
+  line: number;
+  column: number | null;
+  filename: string | null;
+}
+
+interface Block extends Node {
+  nodes: Node[];
+}
+
 // A list of all attributes that should produce a dependency
 // Based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
 const ATTRS: Dictionary<string[]> = {
@@ -56,9 +67,9 @@ export = class PugAsset extends Asset {
 
   public collectDependencies(): void {
     walk(this.ast, node => {
-      const recursiveCollect = (cNode: any) => {
-        if (cNode.nodes) {
-          cNode.nodes.forEach((n: any) => recursiveCollect(n));
+      const recursiveCollect = (cNode: Block | Node) => {
+        if (cNode.type === 'Block') {
+          (cNode as Block).nodes.forEach((n: any) => recursiveCollect(n));
         } else {
           if (cNode.filename && cNode.filename !== this.name && !this.dependencies.has(cNode.filename)) {
           this.addDependency(cNode.filename, {
