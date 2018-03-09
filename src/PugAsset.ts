@@ -58,7 +58,7 @@ export = class PugAsset extends Asset {
     walk(this.ast, node => {
 
       const add = (n: any) => {
-        if(typeof n.filename === 'undefined') {
+        if(typeof n.filename === 'undefined' && typeof n.nodes !== undefined) {
           for(const subNode of n.nodes) {
             add(subNode);
           }
