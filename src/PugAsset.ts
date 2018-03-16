@@ -1,9 +1,5 @@
-import url = require('url');
-import path = require('path');
-
 import { Asset } from './Asset';
 import HTMLAsset = require('parcel-bundler/lib/assets/HTMLAsset');
-import isURL = require('parcel-bundler/lib/utils/is-url');
 
 import load = require('pug-load');
 import lexer = require('pug-lexer');
@@ -91,13 +87,8 @@ export = class PugAsset extends Asset {
           const elements = ATTRS[attr.name];
           if (node.type === 'Tag' && elements && elements.indexOf(node.name) > -1) {
             if (PURE_STRING_REGEX.test(attr.val)) {
-              let assetPath = attr.val.substring(1, attr.val.length - 1);
-              assetPath = this.addURLDependency(assetPath);
-              if (!isURL(assetPath)) {
-                // Use url.resolve to normalize path for windows
-                // from \path\to\res.js to /path/to/res.js
-                assetPath = url.resolve(path.join(this.options.publicURL, assetPath), '');
-              }
+              const assetPath = attr.val.substring(1, attr.val.length - 1);
+              this.addURLDependency(assetPath);
             }
           }
         }
