@@ -28,11 +28,6 @@ declare module 'parcel-bundler/lib/assets/HTMLAsset' {
   export = HTMLAsset;
 }
 
-declare module 'parcel-bundler/lib/utils/is-url' {
-  function isURL(url: string): boolean;
-  export = isURL;
-}
-
 declare module 'pug-load' {
   class load {
     static string(str: string, options?: any): any;
