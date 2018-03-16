@@ -38,6 +38,7 @@ const ATTRS: Dictionary<string[]> = {
     'iframe',
     'embed'
   ],
+  srcset: ['img'],
   href: ['link', 'a'],
   poster: ['video']
 };
