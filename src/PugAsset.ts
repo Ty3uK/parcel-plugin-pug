@@ -2,6 +2,7 @@ import url = require('url');
 import path = require('path');
 
 import { Asset } from './Asset';
+import HTMLAsset = require('parcel-bundler/lib/assets/HTMLAsset');
 import isURL = require('parcel-bundler/lib/utils/is-url');
 
 import load = require('pug-load');
@@ -45,8 +46,12 @@ const ATTRS: Dictionary<string[]> = {
   poster: ['video']
 };
 
+// A regex to detect if a variable is a 'pure' string (no evaluation needed)
+const PURE_STRING_REGEX: RegExp = /(^"([^"]+)"$)|(^'([^']+)'$)/g;
+
 export = class PugAsset extends Asset {
   public type = 'html';
+  public hasUnresolvedDependencies = false;
 
   constructor(name: string, pkg: string, options: any) {
     super(name, pkg, options);
@@ -86,19 +91,37 @@ export = class PugAsset extends Asset {
         for (const attr of node.attrs) {
           const elements = ATTRS[attr.name];
           if (node.type === 'Tag' && elements && elements.indexOf(node.name) > -1) {
-            let assetPath = attr.val.substring(1, attr.val.length - 1);
-            assetPath = this.addURLDependency(assetPath);
-            if (!isURL(assetPath)) {
-              // Use url.resolve to normalize path for windows
-              // from \path\to\res.js to /path/to/res.js
-              assetPath = url.resolve(path.join(this.options.publicURL, assetPath), '');
+            if (PURE_STRING_REGEX.test(attr.val)) {
+              let assetPath = attr.val.substring(1, attr.val.length - 1);
+              assetPath = this.addURLDependency(assetPath);
+              if (!isURL(assetPath)) {
+                // Use url.resolve to normalize path for windows
+                // from \path\to\res.js to /path/to/res.js
+                assetPath = url.resolve(path.join(this.options.publicURL, assetPath), '');
+              }
+              attr.val = `'${assetPath}'`;
+            } else {
+              this.hasUnresolvedDependencies = true;
             }
-            attr.val = `'${assetPath}'`;
           }
         }
       }
       return node;
     });
+  }
+
+  public async process(): Promise<any> {
+    await super.process();
+
+    if (this.hasUnresolvedDependencies) {
+      const htmlAsset = new HTMLAsset(this.name, this.package, this.options);
+      htmlAsset.contents = this.generated.html;
+      await htmlAsset.process();
+
+      Object.assign(this, htmlAsset);
+    }
+
+    return this.generated;
   }
 
   public generate() {
