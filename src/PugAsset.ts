@@ -51,7 +51,6 @@ const PURE_STRING_REGEX: RegExp = /(^"([^"]+)"$)|(^'([^']+)'$)/g;
 
 export = class PugAsset extends Asset {
   public type = 'html';
-  public hasUnresolvedDependencies = false;
 
   constructor(name: string, pkg: string, options: any) {
     super(name, pkg, options);
@@ -99,9 +98,6 @@ export = class PugAsset extends Asset {
                 // from \path\to\res.js to /path/to/res.js
                 assetPath = url.resolve(path.join(this.options.publicURL, assetPath), '');
               }
-              attr.val = `'${assetPath}'`;
-            } else {
-              this.hasUnresolvedDependencies = true;
             }
           }
         }
@@ -113,13 +109,11 @@ export = class PugAsset extends Asset {
   public async process(): Promise<any> {
     await super.process();
 
-    if (this.hasUnresolvedDependencies) {
-      const htmlAsset = new HTMLAsset(this.name, this.package, this.options);
-      htmlAsset.contents = this.generated.html;
-      await htmlAsset.process();
+    const htmlAsset = new HTMLAsset(this.name, this.package, this.options);
+    htmlAsset.contents = this.generated.html;
+    await htmlAsset.process();
 
-      Object.assign(this, htmlAsset);
-    }
+    Object.assign(this, htmlAsset);
 
     return this.generated;
   }
