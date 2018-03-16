@@ -4,6 +4,7 @@ export class Asset {
   parse(code: string): any;
   addDependency(path: string, options: Object): any;
   addURLDependency(url: string): string;
+  process(): Promise<any>;
 
   name: string;
   isAstDirty: boolean;
@@ -11,4 +12,6 @@ export class Asset {
   ast: any;
   options: any;
   dependencies: Set<Object>;
+  generated: any;
+  package: any;
 }
