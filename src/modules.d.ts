@@ -17,9 +17,15 @@ declare module 'parcel-bundler/lib/Asset' {
   export = Asset;
 }
 
-declare module 'parcel-bundler/lib/utils/is-url' {
-  function isURL(url: string): boolean;
-  export = isURL;
+declare module 'parcel-bundler/lib/assets/HTMLAsset' {
+  class HTMLAsset {
+    constructor(name: string, pkg: string, options: any);
+
+    process(): Promise<any>;
+
+    contents: string;
+  }
+  export = HTMLAsset;
 }
 
 declare module 'pug-load' {
@@ -64,4 +70,3 @@ declare module 'pug-filters' {
   function runFilter(name: string, str: string, options: any, currentDirectory: string, funcName: string): any;
   function handleFilters(ast: any, filters?: any): any;
 }
-
