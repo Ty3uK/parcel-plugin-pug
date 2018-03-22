@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/Ty3uK/parcel-plugin-pug/compare/v0.2.8...v0.3.0) (2018-03-22)
+
+
+### Features
+
+* refactored typings, dependencies resolving code ([bf2fd86](https://github.com/Ty3uK/parcel-plugin-pug/commit/bf2fd86))
+
+
+
 <a name="0.2.8"></a>
 ## [0.2.8](https://github.com/Ty3uK/parcel-plugin-pug/compare/v0.2.7...v0.2.8) (2018-03-20)
 

@@ -1,6 +1,6 @@
 {
   "name": "parcel-plugin-pug",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "description": "Pug template support for Parcel bundler",
   "repository": "https://github.com/Ty3uK/parcel-plugin-pug.git",
   "main": "build/index.js",
