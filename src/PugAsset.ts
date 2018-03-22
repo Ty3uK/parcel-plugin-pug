@@ -10,25 +10,10 @@ import generateCode = require('pug-code-gen');
 import wrap = require('pug-runtime/wrap');
 import filters = require('pug-filters');
 
-interface Dictionary<T> {
-  [key: string]: T;
-}
-
-interface Node {
-  type: string;
-  line: number;
-  column: number | null;
-  filename: string | null;
-}
-
-interface Block extends Node {
-  nodes: Node[];
-}
-
-// A list of all attributes that should produce a dependency
+// A list of all attributes that may produce a dependency
 // Based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
-const ATTRS: Dictionary<string[]> = {
-  src: [
+const ATTRS: { [tag: string]: string[] } = {
+  'src': [
     'script',
     'img',
     'audio',
@@ -38,9 +23,11 @@ const ATTRS: Dictionary<string[]> = {
     'iframe',
     'embed'
   ],
-  srcset: ['img'],
-  href: ['link', 'a'],
-  poster: ['video']
+  'href': ['link', 'a', 'use'],
+  'srcset': ['img', 'source'],
+  'poster': ['video'],
+  'xlink:href': ['use'],
+  'content': ['meta']
 };
 
 // A regex to detect if a variable is a 'pure' string (no evaluation needed)
@@ -68,32 +55,23 @@ export = class PugAsset extends Asset {
 
   public collectDependencies(): void {
     walk(this.ast, node => {
-      const recursiveCollect = (cNode: Block | Node) => {
-        if (cNode.type === 'Block') {
-          (cNode as Block).nodes.forEach((n: any) => recursiveCollect(n));
-        } else {
-          if (cNode.filename && cNode.filename !== this.name && !this.dependencies.has(cNode.filename)) {
-            this.addDependency(cNode.filename, {
-              name: cNode.filename,
-              includedInParent: true,
-            });
-          }
-        }
-      };
+      this.recursiveCollect(node);
 
-      recursiveCollect(node);
+      if (node.type === 'Tag') {
+        const tag = node as PugTag;
 
-      if (node.attrs) {
-        for (const attr of node.attrs) {
-          const elements = ATTRS[attr.name];
-          if (node.type === 'Tag' && elements && elements.indexOf(node.name) > -1) {
-            if (PURE_STRING_REGEX.test(attr.val)) {
-              const assetPath = attr.val.substring(1, attr.val.length - 1);
-              this.addURLDependency(assetPath);
+        if (tag.attrs) {
+          for (const attr of tag.attrs) {
+            const elements = ATTRS[attr.name];
+            if (elements && elements.indexOf(tag.name) > -1) {
+              if (PURE_STRING_REGEX.test(attr.val)) {
+                this.addURLDependency(attr.val.substring(1, attr.val.length - 1));
+              }
             }
           }
         }
       }
+
       return node;
     });
   }
@@ -121,5 +99,18 @@ export = class PugAsset extends Asset {
 
   public shouldInvalidate(): boolean {
     return false;
+  }
+
+  private recursiveCollect(cNode: PugBlock | PugNode) {
+    if (cNode.type === 'Block') {
+      (cNode as PugBlock).nodes.forEach((n: PugNode) => this.recursiveCollect(n));
+    } else {
+      if (cNode.filename && cNode.filename !== this.name && !this.dependencies.has(cNode.filename)) {
+        this.addDependency(cNode.filename, {
+          name: cNode.filename,
+          includedInParent: true,
+        });
+      }
+    }
   }
 };

@@ -1,3 +1,40 @@
+interface PugNode {
+  type: string;
+  line: number;
+  column: number | null;
+  filename: string | null;
+}
+
+interface PugBlock extends PugNode {
+  type: 'Block';
+  nodes: PugNode[];
+}
+
+interface PugBlockNode extends PugNode {
+  block: PugBlock | null;
+}
+
+interface PugAttribute {
+  name: string;
+  val: string;
+  mustEscape: boolean;
+}
+
+interface PugAttributedNode extends PugNode {
+  attrs: PugAttribute[];
+  attributeBlocks: string[];
+}
+
+interface PugCommonTag extends PugAttributedNode, PugBlockNode {
+  selfClosing: boolean;
+  isInline: boolean;
+}
+
+interface PugTag extends PugCommonTag {
+  type: 'Tag';
+  name: string;
+}
+
 declare module 'parcel-bundler/lib/Asset' {
   class Asset {
     constructor(name: string, pkg: string, options: any);
@@ -47,7 +84,12 @@ declare module 'pug-parser' {
 }
 
 declare module 'pug-walk' {
-  function walkAST(ast: any, before?: (node: any, replace?: any) => void, after?: (node: any, replace?: any) => void, options?: any): void;
+  function walkAST(
+    ast: any,
+    before?: (node: PugNode | PugBlock, replace?: any) => void,
+    after?: (node: any, replace?: any) => void,
+    options?: any
+  ): void;
   export = walkAST;
 }
 
@@ -67,6 +109,12 @@ declare module 'pug-runtime/wrap' {
 }
 
 declare module 'pug-filters' {
-  function runFilter(name: string, str: string, options: any, currentDirectory: string, funcName: string): any;
+  function runFilter(
+    name: string,
+    str: string,
+    options: any,
+    currentDirectory: string,
+    funcName: string
+  ): any;
   function handleFilters(ast: any, filters?: any): any;
 }
