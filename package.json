@@ -40,7 +40,8 @@
     "pug-load": "^2.0.10",
     "pug-parser": "^5.0.0",
     "pug-runtime": "^2.0.4",
-    "pug-walk": "^1.1.6"
+    "pug-walk": "^1.1.6",
+    "tslib": "^1.9.0"
   },
   "engines": {
     "node": ">= 6.0.0"
