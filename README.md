@@ -13,6 +13,10 @@
 
 [Pug template](https://github.com/pugjs/pug) support for [Parcel bundler](https://github.com/parcel-bundler/parcel)
 
+# DEPRECATED
+
+Since version [1.7.0](https://github.com/parcel-bundler/parcel/releases/tag/v1.7.0) plugin has been integrated into core. You no need to install plugin separately.
+
 ## Features
 
 - Supports `.pug` and `.jade` template files
